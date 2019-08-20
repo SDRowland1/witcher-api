@@ -310,16 +310,16 @@ returns
 
 ### Character Schema 
 
-| Key             |    Type       | Description                                         |
-| --------------- | ------------- | --------------------------------------------------- |
-| id              | id            | Unique ID pertaining to a specific Character        |
-| name            | string        | Name of a given Character                           |
-| race            | string        | The race of a Character (Human/Dwarf/Elf/etc)       |
-| profession      | string        | The profession of a Character                       |
-| affiliation     | string        | Any organization affiliated with a Character        |
-| region          | string        | The region a Character was born, or can be found in |
-| gameAppearences | array of Games| The Games that a Character can be found in          |
-| bookAppearences | array of Books| The Books that a Character can be found in          | 
+| Key             |    Type         | Description                                                        |
+| --------------- | --------------- | ------------------------------------------------------------------ |
+| id              | id              | Unique ID pertaining to a specific Character                       |
+| name            | string          | Name of a given Character                                          |
+| race            | string          | The race of a Character (Human/Dwarf/Elf/etc)                      |
+| profession      | string          | The profession of a Character                                      |
+| affiliation     | string          | Any organization affiliated with a Character                       |
+| region          | string          | The region a Character was born, or can be found in                |
+| gameAppearences | array of Games  | The Games that a Character can be found in                         |
+| bookAppearences | array of Books  | The Books that a Character can be found in                         | 
 
 ### Game Schema 
 
