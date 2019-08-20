@@ -1,0 +1,31 @@
+type Character {
+  id: ID! @id
+  name: String!
+  race: String!
+  profession: String!
+  affiliations: String!
+  region: String!
+  gameAppearences: [Game!]! @relation(link: INLINE)
+  bookAppearences: [Book!]! @relation(link: INLINE)
+}
+
+type Game {
+    id: ID! @id
+    title: String!
+    platforms: [String!]!
+    genres: [String!]!
+    releaseDate: String!
+    publisher: String!
+    developer: String!
+    website: String!
+}
+
+type Book {
+    id: ID! @id
+    title: String!
+    author: String!
+    publisher: String!
+    publicationDate: String!
+    type: String!
+    pages: Int!
+}

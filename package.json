@@ -1,0 +1,23 @@
+{
+  "name": "witcherapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node server.ts",
+    "dev": "ts-node-dev --no-notify --respawn --transpileOnly ./server.ts"
+  },
+  "dependencies": {
+    "graphql": "^14.4.2",
+    "graphql-yoga": "^1.18.2",
+    "nexus": "^0.12.0-beta.6",
+    "nexus-prisma": "^0.3.7",
+    "prisma-client-lib": "^1.34.5"
+  },
+  "devDependencies": {
+    "ts-node": "^8.3.0",
+    "ts-node-dev": "^1.0.0-pre.41",
+    "typescript": "^3.5.3"
+  }
+}
