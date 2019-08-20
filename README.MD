@@ -4,7 +4,7 @@
 
 <!-- <https://www.witcherapi.com/graphql> -->
 
-> You can get a little...
+You can get a little...
 
 ```
 query geralt {
@@ -15,7 +15,7 @@ query geralt {
 }
 ```
 
-> returns...
+returns...
 
 ```
 {
@@ -28,7 +28,7 @@ query geralt {
 }
 ```
 
-> or a lot
+or a lot
 
 ```
 query {
@@ -62,7 +62,7 @@ query {
 }
 ```
 
-> returns
+returns
 
 ```
 {
@@ -217,7 +217,7 @@ query {
 }
 ```
 
-> easily filter data
+easily filter data
 
 ```
 query getLodgeOfSorceresses {
@@ -228,7 +228,7 @@ query getLodgeOfSorceresses {
 }
 ```
 
-> returns
+returns
 
 ```
 {
@@ -270,7 +270,7 @@ query getLodgeOfSorceresses {
   }
 }
 ```
-> or
+or
 
 ```
 query getWolfSchoolWitchers {
@@ -281,7 +281,7 @@ query getWolfSchoolWitchers {
 }
 ```
 
-> returns
+returns
 
 ```
 {
