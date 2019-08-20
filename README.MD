@@ -2,7 +2,7 @@
 
 > The Witcher API is a GraphQL API based on the Witcher Universe created by Andrezj Sapkowski and made popular world-wide by game developers CD Projekt Red.
 
-<https://www.witcherapi.com/graphql>
+<!-- <https://www.witcherapi.com/graphql> -->
 
 > You can get a little...
 
@@ -211,6 +211,97 @@ query {
             "pages": 184
           }
         ]
+      }
+    ]
+  }
+}
+```
+
+> easily filter data
+
+```
+query getLodgeOfSorceresses {
+  characters(where: {affiliations: "Lodge of Sorceresses"} orderBy: name_DESC) {
+    name
+    id
+  }
+}
+```
+
+> returns
+
+```
+{
+  "data": {
+    "characters": [
+      {
+        "name": "Yennefer of Vengerberg",
+        "id": "5d5ae62c799ab50008ba95a2"
+      },
+      {
+        "name": "Triss Merigold of Maribor",
+        "id": "5d5ae6a1799ab50008ba95a3"
+      },
+      {
+        "name": "Sheala de Tancarville",
+        "id": "5d5b1ba6799ab50008ba95fc"
+      },
+      {
+        "name": "Philippa Eilhart",
+        "id": "5d5aea35799ab50008ba95a6"
+      },
+      {
+        "name": "Margarita Laux-Antille",
+        "id": "5d5b0ff6799ab50008ba95e7"
+      },
+      {
+        "name": "Keira Metz",
+        "id": "5d5b0a18799ab50008ba95e1"
+      },
+      {
+        "name": "Fringilla Vigo",
+        "id": "5d5b0071799ab50008ba95cd"
+      },
+      {
+        "name": "Assire var Anahid",
+        "id": "5d5b30a7799ab50008ba9619"
+      }
+    ]
+  }
+}
+```
+> or
+
+```
+query getWolfSchoolWitchers {
+  characters(where: {profession: "Witcher", affiliations: "School of the Wolf" }){
+    name
+    id
+  }
+}
+```
+
+> returns
+
+```
+{
+  "data": {
+    "characters": [
+      {
+        "name": "Geralt of Rivia",
+        "id": "5d5ae34a799ab50008ba95a0"
+      },
+      {
+        "name": "Vesemir",
+        "id": "5d5aeb47799ab50008ba95a7"
+      },
+      {
+        "name": "Eskel",
+        "id": "5d5aec1f799ab50008ba95a8"
+      },
+      {
+        "name": "Lambert",
+        "id": "5d5b0b28799ab50008ba95e3"
       }
     ]
   }
