@@ -9,6 +9,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly ./server.ts"
   },
   "dependencies": {
+    "global": "^4.4.0",
     "graphql": "^14.4.2",
     "graphql-yoga": "^1.18.2",
     "nexus": "^0.12.0-beta.6",
