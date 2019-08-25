@@ -225,9 +225,25 @@ export type CharacterOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
+export interface GameCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  platforms?: Maybe<GameCreateplatformsInput>;
+  genres?: Maybe<GameCreategenresInput>;
+  releaseDate: String;
+  publisher: String;
+  developer: String;
+  website: String;
+}
+
 export type BookWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
+
+export interface BookCreateManyInput {
+  create?: Maybe<BookCreateInput[] | BookCreateInput>;
+  connect?: Maybe<BookWhereUniqueInput[] | BookWhereUniqueInput>;
+}
 
 export interface BookWhereInput {
   id?: Maybe<ID_Input>;
@@ -325,96 +341,96 @@ export interface BookWhereInput {
   AND?: Maybe<BookWhereInput[] | BookWhereInput>;
 }
 
-export type CharacterWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface GameUpdategenresInput {
+  set?: Maybe<String[] | String>;
+}
 
-export interface GameWhereInput {
+export interface CharacterUpdateInput {
+  name?: Maybe<String>;
+  race?: Maybe<String>;
+  profession?: Maybe<String>;
+  affiliations?: Maybe<String>;
+  region?: Maybe<String>;
+  gameAppearences?: Maybe<GameUpdateManyInput>;
+  bookAppearences?: Maybe<BookUpdateManyInput>;
+}
+
+export interface BookCreateInput {
   id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
+  title: String;
+  author: String;
+  publisher: String;
+  publicationDate: String;
+  type: String;
+  pages: Int;
+}
+
+export interface CharacterSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<CharacterWhereInput>;
+  AND?: Maybe<
+    CharacterSubscriptionWhereInput[] | CharacterSubscriptionWhereInput
+  >;
+}
+
+export interface BookUpdateInput {
   title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  releaseDate?: Maybe<String>;
-  releaseDate_not?: Maybe<String>;
-  releaseDate_in?: Maybe<String[] | String>;
-  releaseDate_not_in?: Maybe<String[] | String>;
-  releaseDate_lt?: Maybe<String>;
-  releaseDate_lte?: Maybe<String>;
-  releaseDate_gt?: Maybe<String>;
-  releaseDate_gte?: Maybe<String>;
-  releaseDate_contains?: Maybe<String>;
-  releaseDate_not_contains?: Maybe<String>;
-  releaseDate_starts_with?: Maybe<String>;
-  releaseDate_not_starts_with?: Maybe<String>;
-  releaseDate_ends_with?: Maybe<String>;
-  releaseDate_not_ends_with?: Maybe<String>;
+  author?: Maybe<String>;
   publisher?: Maybe<String>;
-  publisher_not?: Maybe<String>;
-  publisher_in?: Maybe<String[] | String>;
-  publisher_not_in?: Maybe<String[] | String>;
-  publisher_lt?: Maybe<String>;
-  publisher_lte?: Maybe<String>;
-  publisher_gt?: Maybe<String>;
-  publisher_gte?: Maybe<String>;
-  publisher_contains?: Maybe<String>;
-  publisher_not_contains?: Maybe<String>;
-  publisher_starts_with?: Maybe<String>;
-  publisher_not_starts_with?: Maybe<String>;
-  publisher_ends_with?: Maybe<String>;
-  publisher_not_ends_with?: Maybe<String>;
+  publicationDate?: Maybe<String>;
+  type?: Maybe<String>;
+  pages?: Maybe<Int>;
+}
+
+export interface BookSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<BookWhereInput>;
+  AND?: Maybe<BookSubscriptionWhereInput[] | BookSubscriptionWhereInput>;
+}
+
+export interface BookUpdateManyMutationInput {
+  title?: Maybe<String>;
+  author?: Maybe<String>;
+  publisher?: Maybe<String>;
+  publicationDate?: Maybe<String>;
+  type?: Maybe<String>;
+  pages?: Maybe<Int>;
+}
+
+export interface GameUpdateManyMutationInput {
+  title?: Maybe<String>;
+  platforms?: Maybe<GameUpdateplatformsInput>;
+  genres?: Maybe<GameUpdategenresInput>;
+  releaseDate?: Maybe<String>;
+  publisher?: Maybe<String>;
   developer?: Maybe<String>;
-  developer_not?: Maybe<String>;
-  developer_in?: Maybe<String[] | String>;
-  developer_not_in?: Maybe<String[] | String>;
-  developer_lt?: Maybe<String>;
-  developer_lte?: Maybe<String>;
-  developer_gt?: Maybe<String>;
-  developer_gte?: Maybe<String>;
-  developer_contains?: Maybe<String>;
-  developer_not_contains?: Maybe<String>;
-  developer_starts_with?: Maybe<String>;
-  developer_not_starts_with?: Maybe<String>;
-  developer_ends_with?: Maybe<String>;
-  developer_not_ends_with?: Maybe<String>;
   website?: Maybe<String>;
-  website_not?: Maybe<String>;
-  website_in?: Maybe<String[] | String>;
-  website_not_in?: Maybe<String[] | String>;
-  website_lt?: Maybe<String>;
-  website_lte?: Maybe<String>;
-  website_gt?: Maybe<String>;
-  website_gte?: Maybe<String>;
-  website_contains?: Maybe<String>;
-  website_not_contains?: Maybe<String>;
-  website_starts_with?: Maybe<String>;
-  website_not_starts_with?: Maybe<String>;
-  website_ends_with?: Maybe<String>;
-  website_not_ends_with?: Maybe<String>;
-  AND?: Maybe<GameWhereInput[] | GameWhereInput>;
+}
+
+export interface BookUpdateManyInput {
+  create?: Maybe<BookCreateInput[] | BookCreateInput>;
+  update?: Maybe<
+    | BookUpdateWithWhereUniqueNestedInput[]
+    | BookUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | BookUpsertWithWhereUniqueNestedInput[]
+    | BookUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<BookWhereUniqueInput[] | BookWhereUniqueInput>;
+  connect?: Maybe<BookWhereUniqueInput[] | BookWhereUniqueInput>;
+  set?: Maybe<BookWhereUniqueInput[] | BookWhereUniqueInput>;
+  disconnect?: Maybe<BookWhereUniqueInput[] | BookWhereUniqueInput>;
+  deleteMany?: Maybe<BookScalarWhereInput[] | BookScalarWhereInput>;
+  updateMany?: Maybe<
+    BookUpdateManyWithWhereNestedInput[] | BookUpdateManyWithWhereNestedInput
+  >;
 }
 
 export interface CharacterWhereInput {
@@ -507,30 +523,17 @@ export interface CharacterWhereInput {
   AND?: Maybe<CharacterWhereInput[] | CharacterWhereInput>;
 }
 
-export type GameWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface BookCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  author: String;
-  publisher: String;
-  publicationDate: String;
-  type: String;
-  pages: Int;
-}
-
-export interface BookUpdateInput {
+export interface GameUpdateManyDataInput {
   title?: Maybe<String>;
-  author?: Maybe<String>;
+  platforms?: Maybe<GameUpdateplatformsInput>;
+  genres?: Maybe<GameUpdategenresInput>;
+  releaseDate?: Maybe<String>;
   publisher?: Maybe<String>;
-  publicationDate?: Maybe<String>;
-  type?: Maybe<String>;
-  pages?: Maybe<Int>;
+  developer?: Maybe<String>;
+  website?: Maybe<String>;
 }
 
-export interface BookUpdateManyMutationInput {
+export interface BookUpdateManyDataInput {
   title?: Maybe<String>;
   author?: Maybe<String>;
   publisher?: Maybe<String>;
@@ -548,239 +551,6 @@ export interface CharacterCreateInput {
   region: String;
   gameAppearences?: Maybe<GameCreateManyInput>;
   bookAppearences?: Maybe<BookCreateManyInput>;
-}
-
-export interface GameCreateManyInput {
-  create?: Maybe<GameCreateInput[] | GameCreateInput>;
-  connect?: Maybe<GameWhereUniqueInput[] | GameWhereUniqueInput>;
-}
-
-export interface GameCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  platforms?: Maybe<GameCreateplatformsInput>;
-  genres?: Maybe<GameCreategenresInput>;
-  releaseDate: String;
-  publisher: String;
-  developer: String;
-  website: String;
-}
-
-export interface GameCreateplatformsInput {
-  set?: Maybe<String[] | String>;
-}
-
-export interface GameCreategenresInput {
-  set?: Maybe<String[] | String>;
-}
-
-export interface BookCreateManyInput {
-  create?: Maybe<BookCreateInput[] | BookCreateInput>;
-  connect?: Maybe<BookWhereUniqueInput[] | BookWhereUniqueInput>;
-}
-
-export interface CharacterUpdateInput {
-  name?: Maybe<String>;
-  race?: Maybe<String>;
-  profession?: Maybe<String>;
-  affiliations?: Maybe<String>;
-  region?: Maybe<String>;
-  gameAppearences?: Maybe<GameUpdateManyInput>;
-  bookAppearences?: Maybe<BookUpdateManyInput>;
-}
-
-export interface GameUpdateManyInput {
-  create?: Maybe<GameCreateInput[] | GameCreateInput>;
-  update?: Maybe<
-    | GameUpdateWithWhereUniqueNestedInput[]
-    | GameUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | GameUpsertWithWhereUniqueNestedInput[]
-    | GameUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<GameWhereUniqueInput[] | GameWhereUniqueInput>;
-  connect?: Maybe<GameWhereUniqueInput[] | GameWhereUniqueInput>;
-  set?: Maybe<GameWhereUniqueInput[] | GameWhereUniqueInput>;
-  disconnect?: Maybe<GameWhereUniqueInput[] | GameWhereUniqueInput>;
-  deleteMany?: Maybe<GameScalarWhereInput[] | GameScalarWhereInput>;
-  updateMany?: Maybe<
-    GameUpdateManyWithWhereNestedInput[] | GameUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface GameUpdateWithWhereUniqueNestedInput {
-  where: GameWhereUniqueInput;
-  data: GameUpdateDataInput;
-}
-
-export interface GameUpdateDataInput {
-  title?: Maybe<String>;
-  platforms?: Maybe<GameUpdateplatformsInput>;
-  genres?: Maybe<GameUpdategenresInput>;
-  releaseDate?: Maybe<String>;
-  publisher?: Maybe<String>;
-  developer?: Maybe<String>;
-  website?: Maybe<String>;
-}
-
-export interface GameUpdateplatformsInput {
-  set?: Maybe<String[] | String>;
-}
-
-export interface GameUpdategenresInput {
-  set?: Maybe<String[] | String>;
-}
-
-export interface GameUpsertWithWhereUniqueNestedInput {
-  where: GameWhereUniqueInput;
-  update: GameUpdateDataInput;
-  create: GameCreateInput;
-}
-
-export interface GameScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  releaseDate?: Maybe<String>;
-  releaseDate_not?: Maybe<String>;
-  releaseDate_in?: Maybe<String[] | String>;
-  releaseDate_not_in?: Maybe<String[] | String>;
-  releaseDate_lt?: Maybe<String>;
-  releaseDate_lte?: Maybe<String>;
-  releaseDate_gt?: Maybe<String>;
-  releaseDate_gte?: Maybe<String>;
-  releaseDate_contains?: Maybe<String>;
-  releaseDate_not_contains?: Maybe<String>;
-  releaseDate_starts_with?: Maybe<String>;
-  releaseDate_not_starts_with?: Maybe<String>;
-  releaseDate_ends_with?: Maybe<String>;
-  releaseDate_not_ends_with?: Maybe<String>;
-  publisher?: Maybe<String>;
-  publisher_not?: Maybe<String>;
-  publisher_in?: Maybe<String[] | String>;
-  publisher_not_in?: Maybe<String[] | String>;
-  publisher_lt?: Maybe<String>;
-  publisher_lte?: Maybe<String>;
-  publisher_gt?: Maybe<String>;
-  publisher_gte?: Maybe<String>;
-  publisher_contains?: Maybe<String>;
-  publisher_not_contains?: Maybe<String>;
-  publisher_starts_with?: Maybe<String>;
-  publisher_not_starts_with?: Maybe<String>;
-  publisher_ends_with?: Maybe<String>;
-  publisher_not_ends_with?: Maybe<String>;
-  developer?: Maybe<String>;
-  developer_not?: Maybe<String>;
-  developer_in?: Maybe<String[] | String>;
-  developer_not_in?: Maybe<String[] | String>;
-  developer_lt?: Maybe<String>;
-  developer_lte?: Maybe<String>;
-  developer_gt?: Maybe<String>;
-  developer_gte?: Maybe<String>;
-  developer_contains?: Maybe<String>;
-  developer_not_contains?: Maybe<String>;
-  developer_starts_with?: Maybe<String>;
-  developer_not_starts_with?: Maybe<String>;
-  developer_ends_with?: Maybe<String>;
-  developer_not_ends_with?: Maybe<String>;
-  website?: Maybe<String>;
-  website_not?: Maybe<String>;
-  website_in?: Maybe<String[] | String>;
-  website_not_in?: Maybe<String[] | String>;
-  website_lt?: Maybe<String>;
-  website_lte?: Maybe<String>;
-  website_gt?: Maybe<String>;
-  website_gte?: Maybe<String>;
-  website_contains?: Maybe<String>;
-  website_not_contains?: Maybe<String>;
-  website_starts_with?: Maybe<String>;
-  website_not_starts_with?: Maybe<String>;
-  website_ends_with?: Maybe<String>;
-  website_not_ends_with?: Maybe<String>;
-  AND?: Maybe<GameScalarWhereInput[] | GameScalarWhereInput>;
-  OR?: Maybe<GameScalarWhereInput[] | GameScalarWhereInput>;
-  NOT?: Maybe<GameScalarWhereInput[] | GameScalarWhereInput>;
-}
-
-export interface GameUpdateManyWithWhereNestedInput {
-  where: GameScalarWhereInput;
-  data: GameUpdateManyDataInput;
-}
-
-export interface GameUpdateManyDataInput {
-  title?: Maybe<String>;
-  platforms?: Maybe<GameUpdateplatformsInput>;
-  genres?: Maybe<GameUpdategenresInput>;
-  releaseDate?: Maybe<String>;
-  publisher?: Maybe<String>;
-  developer?: Maybe<String>;
-  website?: Maybe<String>;
-}
-
-export interface BookUpdateManyInput {
-  create?: Maybe<BookCreateInput[] | BookCreateInput>;
-  update?: Maybe<
-    | BookUpdateWithWhereUniqueNestedInput[]
-    | BookUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | BookUpsertWithWhereUniqueNestedInput[]
-    | BookUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<BookWhereUniqueInput[] | BookWhereUniqueInput>;
-  connect?: Maybe<BookWhereUniqueInput[] | BookWhereUniqueInput>;
-  set?: Maybe<BookWhereUniqueInput[] | BookWhereUniqueInput>;
-  disconnect?: Maybe<BookWhereUniqueInput[] | BookWhereUniqueInput>;
-  deleteMany?: Maybe<BookScalarWhereInput[] | BookScalarWhereInput>;
-  updateMany?: Maybe<
-    BookUpdateManyWithWhereNestedInput[] | BookUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface BookUpdateWithWhereUniqueNestedInput {
-  where: BookWhereUniqueInput;
-  data: BookUpdateDataInput;
-}
-
-export interface BookUpdateDataInput {
-  title?: Maybe<String>;
-  author?: Maybe<String>;
-  publisher?: Maybe<String>;
-  publicationDate?: Maybe<String>;
-  type?: Maybe<String>;
-  pages?: Maybe<Int>;
-}
-
-export interface BookUpsertWithWhereUniqueNestedInput {
-  where: BookWhereUniqueInput;
-  update: BookUpdateDataInput;
-  create: BookCreateInput;
 }
 
 export interface BookScalarWhereInput {
@@ -881,26 +651,37 @@ export interface BookScalarWhereInput {
   NOT?: Maybe<BookScalarWhereInput[] | BookScalarWhereInput>;
 }
 
-export interface BookUpdateManyWithWhereNestedInput {
-  where: BookScalarWhereInput;
-  data: BookUpdateManyDataInput;
+export interface GameCreateManyInput {
+  create?: Maybe<GameCreateInput[] | GameCreateInput>;
+  connect?: Maybe<GameWhereUniqueInput[] | GameWhereUniqueInput>;
 }
 
-export interface BookUpdateManyDataInput {
-  title?: Maybe<String>;
-  author?: Maybe<String>;
-  publisher?: Maybe<String>;
-  publicationDate?: Maybe<String>;
-  type?: Maybe<String>;
-  pages?: Maybe<Int>;
+export interface BookUpsertWithWhereUniqueNestedInput {
+  where: BookWhereUniqueInput;
+  update: BookUpdateDataInput;
+  create: BookCreateInput;
 }
 
-export interface CharacterUpdateManyMutationInput {
-  name?: Maybe<String>;
-  race?: Maybe<String>;
-  profession?: Maybe<String>;
-  affiliations?: Maybe<String>;
-  region?: Maybe<String>;
+export interface GameUpdateManyWithWhereNestedInput {
+  where: GameScalarWhereInput;
+  data: GameUpdateManyDataInput;
+}
+
+export interface BookUpdateWithWhereUniqueNestedInput {
+  where: BookWhereUniqueInput;
+  data: BookUpdateDataInput;
+}
+
+export interface GameCreateplatformsInput {
+  set?: Maybe<String[] | String>;
+}
+
+export type CharacterWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface GameCreategenresInput {
+  set?: Maybe<String[] | String>;
 }
 
 export interface GameUpdateInput {
@@ -913,7 +694,121 @@ export interface GameUpdateInput {
   website?: Maybe<String>;
 }
 
-export interface GameUpdateManyMutationInput {
+export interface GameScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  releaseDate?: Maybe<String>;
+  releaseDate_not?: Maybe<String>;
+  releaseDate_in?: Maybe<String[] | String>;
+  releaseDate_not_in?: Maybe<String[] | String>;
+  releaseDate_lt?: Maybe<String>;
+  releaseDate_lte?: Maybe<String>;
+  releaseDate_gt?: Maybe<String>;
+  releaseDate_gte?: Maybe<String>;
+  releaseDate_contains?: Maybe<String>;
+  releaseDate_not_contains?: Maybe<String>;
+  releaseDate_starts_with?: Maybe<String>;
+  releaseDate_not_starts_with?: Maybe<String>;
+  releaseDate_ends_with?: Maybe<String>;
+  releaseDate_not_ends_with?: Maybe<String>;
+  publisher?: Maybe<String>;
+  publisher_not?: Maybe<String>;
+  publisher_in?: Maybe<String[] | String>;
+  publisher_not_in?: Maybe<String[] | String>;
+  publisher_lt?: Maybe<String>;
+  publisher_lte?: Maybe<String>;
+  publisher_gt?: Maybe<String>;
+  publisher_gte?: Maybe<String>;
+  publisher_contains?: Maybe<String>;
+  publisher_not_contains?: Maybe<String>;
+  publisher_starts_with?: Maybe<String>;
+  publisher_not_starts_with?: Maybe<String>;
+  publisher_ends_with?: Maybe<String>;
+  publisher_not_ends_with?: Maybe<String>;
+  developer?: Maybe<String>;
+  developer_not?: Maybe<String>;
+  developer_in?: Maybe<String[] | String>;
+  developer_not_in?: Maybe<String[] | String>;
+  developer_lt?: Maybe<String>;
+  developer_lte?: Maybe<String>;
+  developer_gt?: Maybe<String>;
+  developer_gte?: Maybe<String>;
+  developer_contains?: Maybe<String>;
+  developer_not_contains?: Maybe<String>;
+  developer_starts_with?: Maybe<String>;
+  developer_not_starts_with?: Maybe<String>;
+  developer_ends_with?: Maybe<String>;
+  developer_not_ends_with?: Maybe<String>;
+  website?: Maybe<String>;
+  website_not?: Maybe<String>;
+  website_in?: Maybe<String[] | String>;
+  website_not_in?: Maybe<String[] | String>;
+  website_lt?: Maybe<String>;
+  website_lte?: Maybe<String>;
+  website_gt?: Maybe<String>;
+  website_gte?: Maybe<String>;
+  website_contains?: Maybe<String>;
+  website_not_contains?: Maybe<String>;
+  website_starts_with?: Maybe<String>;
+  website_not_starts_with?: Maybe<String>;
+  website_ends_with?: Maybe<String>;
+  website_not_ends_with?: Maybe<String>;
+  AND?: Maybe<GameScalarWhereInput[] | GameScalarWhereInput>;
+  OR?: Maybe<GameScalarWhereInput[] | GameScalarWhereInput>;
+  NOT?: Maybe<GameScalarWhereInput[] | GameScalarWhereInput>;
+}
+
+export interface BookUpdateManyWithWhereNestedInput {
+  where: BookScalarWhereInput;
+  data: BookUpdateManyDataInput;
+}
+
+export interface GameUpsertWithWhereUniqueNestedInput {
+  where: GameWhereUniqueInput;
+  update: GameUpdateDataInput;
+  create: GameCreateInput;
+}
+
+export interface BookUpdateDataInput {
+  title?: Maybe<String>;
+  author?: Maybe<String>;
+  publisher?: Maybe<String>;
+  publicationDate?: Maybe<String>;
+  type?: Maybe<String>;
+  pages?: Maybe<Int>;
+}
+
+export interface GameUpdateplatformsInput {
+  set?: Maybe<String[] | String>;
+}
+
+export interface GameUpdateDataInput {
   title?: Maybe<String>;
   platforms?: Maybe<GameUpdateplatformsInput>;
   genres?: Maybe<GameUpdategenresInput>;
@@ -923,23 +818,28 @@ export interface GameUpdateManyMutationInput {
   website?: Maybe<String>;
 }
 
-export interface BookSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<BookWhereInput>;
-  AND?: Maybe<BookSubscriptionWhereInput[] | BookSubscriptionWhereInput>;
+export interface GameUpdateWithWhereUniqueNestedInput {
+  where: GameWhereUniqueInput;
+  data: GameUpdateDataInput;
 }
 
-export interface CharacterSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<CharacterWhereInput>;
-  AND?: Maybe<
-    CharacterSubscriptionWhereInput[] | CharacterSubscriptionWhereInput
+export interface GameUpdateManyInput {
+  create?: Maybe<GameCreateInput[] | GameCreateInput>;
+  update?: Maybe<
+    | GameUpdateWithWhereUniqueNestedInput[]
+    | GameUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | GameUpsertWithWhereUniqueNestedInput[]
+    | GameUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<GameWhereUniqueInput[] | GameWhereUniqueInput>;
+  connect?: Maybe<GameWhereUniqueInput[] | GameWhereUniqueInput>;
+  set?: Maybe<GameWhereUniqueInput[] | GameWhereUniqueInput>;
+  disconnect?: Maybe<GameWhereUniqueInput[] | GameWhereUniqueInput>;
+  deleteMany?: Maybe<GameScalarWhereInput[] | GameScalarWhereInput>;
+  updateMany?: Maybe<
+    GameUpdateManyWithWhereNestedInput[] | GameUpdateManyWithWhereNestedInput
   >;
 }
 
@@ -952,73 +852,193 @@ export interface GameSubscriptionWhereInput {
   AND?: Maybe<GameSubscriptionWhereInput[] | GameSubscriptionWhereInput>;
 }
 
+export type GameWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface CharacterUpdateManyMutationInput {
+  name?: Maybe<String>;
+  race?: Maybe<String>;
+  profession?: Maybe<String>;
+  affiliations?: Maybe<String>;
+  region?: Maybe<String>;
+}
+
+export interface GameWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  releaseDate?: Maybe<String>;
+  releaseDate_not?: Maybe<String>;
+  releaseDate_in?: Maybe<String[] | String>;
+  releaseDate_not_in?: Maybe<String[] | String>;
+  releaseDate_lt?: Maybe<String>;
+  releaseDate_lte?: Maybe<String>;
+  releaseDate_gt?: Maybe<String>;
+  releaseDate_gte?: Maybe<String>;
+  releaseDate_contains?: Maybe<String>;
+  releaseDate_not_contains?: Maybe<String>;
+  releaseDate_starts_with?: Maybe<String>;
+  releaseDate_not_starts_with?: Maybe<String>;
+  releaseDate_ends_with?: Maybe<String>;
+  releaseDate_not_ends_with?: Maybe<String>;
+  publisher?: Maybe<String>;
+  publisher_not?: Maybe<String>;
+  publisher_in?: Maybe<String[] | String>;
+  publisher_not_in?: Maybe<String[] | String>;
+  publisher_lt?: Maybe<String>;
+  publisher_lte?: Maybe<String>;
+  publisher_gt?: Maybe<String>;
+  publisher_gte?: Maybe<String>;
+  publisher_contains?: Maybe<String>;
+  publisher_not_contains?: Maybe<String>;
+  publisher_starts_with?: Maybe<String>;
+  publisher_not_starts_with?: Maybe<String>;
+  publisher_ends_with?: Maybe<String>;
+  publisher_not_ends_with?: Maybe<String>;
+  developer?: Maybe<String>;
+  developer_not?: Maybe<String>;
+  developer_in?: Maybe<String[] | String>;
+  developer_not_in?: Maybe<String[] | String>;
+  developer_lt?: Maybe<String>;
+  developer_lte?: Maybe<String>;
+  developer_gt?: Maybe<String>;
+  developer_gte?: Maybe<String>;
+  developer_contains?: Maybe<String>;
+  developer_not_contains?: Maybe<String>;
+  developer_starts_with?: Maybe<String>;
+  developer_not_starts_with?: Maybe<String>;
+  developer_ends_with?: Maybe<String>;
+  developer_not_ends_with?: Maybe<String>;
+  website?: Maybe<String>;
+  website_not?: Maybe<String>;
+  website_in?: Maybe<String[] | String>;
+  website_not_in?: Maybe<String[] | String>;
+  website_lt?: Maybe<String>;
+  website_lte?: Maybe<String>;
+  website_gt?: Maybe<String>;
+  website_gte?: Maybe<String>;
+  website_contains?: Maybe<String>;
+  website_not_contains?: Maybe<String>;
+  website_starts_with?: Maybe<String>;
+  website_not_starts_with?: Maybe<String>;
+  website_ends_with?: Maybe<String>;
+  website_not_ends_with?: Maybe<String>;
+  AND?: Maybe<GameWhereInput[] | GameWhereInput>;
+}
+
 export interface NodeNode {
   id: ID_Output;
 }
 
-export interface Book {
+export interface GamePreviousValues {
   id: ID_Output;
   title: String;
-  author: String;
+  platforms: String[];
+  genres: String[];
+  releaseDate: String;
   publisher: String;
-  publicationDate: String;
-  type: String;
-  pages: Int;
+  developer: String;
+  website: String;
 }
 
-export interface BookPromise extends Promise<Book>, Fragmentable {
+export interface GamePreviousValuesPromise
+  extends Promise<GamePreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
-  author: () => Promise<String>;
+  platforms: () => Promise<String[]>;
+  genres: () => Promise<String[]>;
+  releaseDate: () => Promise<String>;
   publisher: () => Promise<String>;
-  publicationDate: () => Promise<String>;
-  type: () => Promise<String>;
-  pages: () => Promise<Int>;
+  developer: () => Promise<String>;
+  website: () => Promise<String>;
 }
 
-export interface BookSubscription
-  extends Promise<AsyncIterator<Book>>,
+export interface GamePreviousValuesSubscription
+  extends Promise<AsyncIterator<GamePreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
-  author: () => Promise<AsyncIterator<String>>;
+  platforms: () => Promise<AsyncIterator<String[]>>;
+  genres: () => Promise<AsyncIterator<String[]>>;
+  releaseDate: () => Promise<AsyncIterator<String>>;
   publisher: () => Promise<AsyncIterator<String>>;
-  publicationDate: () => Promise<AsyncIterator<String>>;
-  type: () => Promise<AsyncIterator<String>>;
-  pages: () => Promise<AsyncIterator<Int>>;
+  developer: () => Promise<AsyncIterator<String>>;
+  website: () => Promise<AsyncIterator<String>>;
 }
 
-export interface BookNullablePromise
-  extends Promise<Book | null>,
+export interface Game {
+  id: ID_Output;
+  title: String;
+  platforms: String[];
+  genres: String[];
+  releaseDate: String;
+  publisher: String;
+  developer: String;
+  website: String;
+}
+
+export interface GamePromise extends Promise<Game>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  platforms: () => Promise<String[]>;
+  genres: () => Promise<String[]>;
+  releaseDate: () => Promise<String>;
+  publisher: () => Promise<String>;
+  developer: () => Promise<String>;
+  website: () => Promise<String>;
+}
+
+export interface GameSubscription
+  extends Promise<AsyncIterator<Game>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  platforms: () => Promise<AsyncIterator<String[]>>;
+  genres: () => Promise<AsyncIterator<String[]>>;
+  releaseDate: () => Promise<AsyncIterator<String>>;
+  publisher: () => Promise<AsyncIterator<String>>;
+  developer: () => Promise<AsyncIterator<String>>;
+  website: () => Promise<AsyncIterator<String>>;
+}
+
+export interface GameNullablePromise
+  extends Promise<Game | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
-  author: () => Promise<String>;
+  platforms: () => Promise<String[]>;
+  genres: () => Promise<String[]>;
+  releaseDate: () => Promise<String>;
   publisher: () => Promise<String>;
-  publicationDate: () => Promise<String>;
-  type: () => Promise<String>;
-  pages: () => Promise<Int>;
-}
-
-export interface BookConnection {
-  pageInfo: PageInfo;
-  edges: BookEdge[];
-}
-
-export interface BookConnectionPromise
-  extends Promise<BookConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<BookEdge>>() => T;
-  aggregate: <T = AggregateBookPromise>() => T;
-}
-
-export interface BookConnectionSubscription
-  extends Promise<AsyncIterator<BookConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<BookEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateBookSubscription>() => T;
+  developer: () => Promise<String>;
+  website: () => Promise<String>;
 }
 
 export interface PageInfo {
@@ -1044,6 +1064,58 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
+export interface BookConnection {
+  pageInfo: PageInfo;
+  edges: BookEdge[];
+}
+
+export interface BookConnectionPromise
+  extends Promise<BookConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<BookEdge>>() => T;
+  aggregate: <T = AggregateBookPromise>() => T;
+}
+
+export interface BookConnectionSubscription
+  extends Promise<AsyncIterator<BookConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<BookEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateBookSubscription>() => T;
+}
+
+export interface CharacterPreviousValues {
+  id: ID_Output;
+  name: String;
+  race: String;
+  profession: String;
+  affiliations: String;
+  region: String;
+}
+
+export interface CharacterPreviousValuesPromise
+  extends Promise<CharacterPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  race: () => Promise<String>;
+  profession: () => Promise<String>;
+  affiliations: () => Promise<String>;
+  region: () => Promise<String>;
+}
+
+export interface CharacterPreviousValuesSubscription
+  extends Promise<AsyncIterator<CharacterPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  race: () => Promise<AsyncIterator<String>>;
+  profession: () => Promise<AsyncIterator<String>>;
+  affiliations: () => Promise<AsyncIterator<String>>;
+  region: () => Promise<AsyncIterator<String>>;
+}
+
 export interface BookEdge {
   node: Book;
   cursor: String;
@@ -1061,18 +1133,18 @@ export interface BookEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateBook {
+export interface AggregateGame {
   count: Int;
 }
 
-export interface AggregateBookPromise
-  extends Promise<AggregateBook>,
+export interface AggregateGamePromise
+  extends Promise<AggregateGame>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateBookSubscription
-  extends Promise<AsyncIterator<AggregateBook>>,
+export interface AggregateGameSubscription
+  extends Promise<AsyncIterator<AggregateGame>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -1171,110 +1243,6 @@ export interface CharacterNullablePromise
   }) => T;
 }
 
-export interface Game {
-  id: ID_Output;
-  title: String;
-  platforms: String[];
-  genres: String[];
-  releaseDate: String;
-  publisher: String;
-  developer: String;
-  website: String;
-}
-
-export interface GamePromise extends Promise<Game>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  platforms: () => Promise<String[]>;
-  genres: () => Promise<String[]>;
-  releaseDate: () => Promise<String>;
-  publisher: () => Promise<String>;
-  developer: () => Promise<String>;
-  website: () => Promise<String>;
-}
-
-export interface GameSubscription
-  extends Promise<AsyncIterator<Game>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  platforms: () => Promise<AsyncIterator<String[]>>;
-  genres: () => Promise<AsyncIterator<String[]>>;
-  releaseDate: () => Promise<AsyncIterator<String>>;
-  publisher: () => Promise<AsyncIterator<String>>;
-  developer: () => Promise<AsyncIterator<String>>;
-  website: () => Promise<AsyncIterator<String>>;
-}
-
-export interface GameNullablePromise
-  extends Promise<Game | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  platforms: () => Promise<String[]>;
-  genres: () => Promise<String[]>;
-  releaseDate: () => Promise<String>;
-  publisher: () => Promise<String>;
-  developer: () => Promise<String>;
-  website: () => Promise<String>;
-}
-
-export interface CharacterConnection {
-  pageInfo: PageInfo;
-  edges: CharacterEdge[];
-}
-
-export interface CharacterConnectionPromise
-  extends Promise<CharacterConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CharacterEdge>>() => T;
-  aggregate: <T = AggregateCharacterPromise>() => T;
-}
-
-export interface CharacterConnectionSubscription
-  extends Promise<AsyncIterator<CharacterConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CharacterEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCharacterSubscription>() => T;
-}
-
-export interface CharacterEdge {
-  node: Character;
-  cursor: String;
-}
-
-export interface CharacterEdgePromise
-  extends Promise<CharacterEdge>,
-    Fragmentable {
-  node: <T = CharacterPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface CharacterEdgeSubscription
-  extends Promise<AsyncIterator<CharacterEdge>>,
-    Fragmentable {
-  node: <T = CharacterSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateCharacter {
-  count: Int;
-}
-
-export interface AggregateCharacterPromise
-  extends Promise<AggregateCharacter>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateCharacterSubscription
-  extends Promise<AsyncIterator<AggregateCharacter>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
 export interface GameConnection {
   pageInfo: PageInfo;
   edges: GameEdge[];
@@ -1296,78 +1264,108 @@ export interface GameConnectionSubscription
   aggregate: <T = AggregateGameSubscription>() => T;
 }
 
-export interface GameEdge {
-  node: Game;
+export interface Book {
+  id: ID_Output;
+  title: String;
+  author: String;
+  publisher: String;
+  publicationDate: String;
+  type: String;
+  pages: Int;
+}
+
+export interface BookPromise extends Promise<Book>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  author: () => Promise<String>;
+  publisher: () => Promise<String>;
+  publicationDate: () => Promise<String>;
+  type: () => Promise<String>;
+  pages: () => Promise<Int>;
+}
+
+export interface BookSubscription
+  extends Promise<AsyncIterator<Book>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  author: () => Promise<AsyncIterator<String>>;
+  publisher: () => Promise<AsyncIterator<String>>;
+  publicationDate: () => Promise<AsyncIterator<String>>;
+  type: () => Promise<AsyncIterator<String>>;
+  pages: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BookNullablePromise
+  extends Promise<Book | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  author: () => Promise<String>;
+  publisher: () => Promise<String>;
+  publicationDate: () => Promise<String>;
+  type: () => Promise<String>;
+  pages: () => Promise<Int>;
+}
+
+export interface CharacterEdge {
+  node: Character;
   cursor: String;
 }
 
-export interface GameEdgePromise extends Promise<GameEdge>, Fragmentable {
-  node: <T = GamePromise>() => T;
+export interface CharacterEdgePromise
+  extends Promise<CharacterEdge>,
+    Fragmentable {
+  node: <T = CharacterPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface GameEdgeSubscription
-  extends Promise<AsyncIterator<GameEdge>>,
+export interface CharacterEdgeSubscription
+  extends Promise<AsyncIterator<CharacterEdge>>,
     Fragmentable {
-  node: <T = GameSubscription>() => T;
+  node: <T = CharacterSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateGame {
+export interface CharacterSubscriptionPayload {
+  mutation: MutationType;
+  node: Character;
+  updatedFields: String[];
+  previousValues: CharacterPreviousValues;
+}
+
+export interface CharacterSubscriptionPayloadPromise
+  extends Promise<CharacterSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CharacterPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CharacterPreviousValuesPromise>() => T;
+}
+
+export interface CharacterSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CharacterSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CharacterSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CharacterPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateBook {
   count: Int;
 }
 
-export interface AggregateGamePromise
-  extends Promise<AggregateGame>,
+export interface AggregateBookPromise
+  extends Promise<AggregateBook>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateGameSubscription
-  extends Promise<AsyncIterator<AggregateGame>>,
+export interface AggregateBookSubscription
+  extends Promise<AsyncIterator<AggregateBook>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface BookSubscriptionPayload {
-  mutation: MutationType;
-  node: Book;
-  updatedFields: String[];
-  previousValues: BookPreviousValues;
-}
-
-export interface BookSubscriptionPayloadPromise
-  extends Promise<BookSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = BookPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = BookPreviousValuesPromise>() => T;
-}
-
-export interface BookSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<BookSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = BookSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = BookPreviousValuesSubscription>() => T;
 }
 
 export interface BookPreviousValues {
@@ -1404,60 +1402,99 @@ export interface BookPreviousValuesSubscription
   pages: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface CharacterSubscriptionPayload {
+export interface BookSubscriptionPayload {
   mutation: MutationType;
-  node: Character;
+  node: Book;
   updatedFields: String[];
-  previousValues: CharacterPreviousValues;
+  previousValues: BookPreviousValues;
 }
 
-export interface CharacterSubscriptionPayloadPromise
-  extends Promise<CharacterSubscriptionPayload>,
+export interface BookSubscriptionPayloadPromise
+  extends Promise<BookSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = CharacterPromise>() => T;
+  node: <T = BookPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = CharacterPreviousValuesPromise>() => T;
+  previousValues: <T = BookPreviousValuesPromise>() => T;
 }
 
-export interface CharacterSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CharacterSubscriptionPayload>>,
+export interface BookSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<BookSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CharacterSubscription>() => T;
+  node: <T = BookSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CharacterPreviousValuesSubscription>() => T;
+  previousValues: <T = BookPreviousValuesSubscription>() => T;
 }
 
-export interface CharacterPreviousValues {
-  id: ID_Output;
-  name: String;
-  race: String;
-  profession: String;
-  affiliations: String;
-  region: String;
+export interface CharacterConnection {
+  pageInfo: PageInfo;
+  edges: CharacterEdge[];
 }
 
-export interface CharacterPreviousValuesPromise
-  extends Promise<CharacterPreviousValues>,
+export interface CharacterConnectionPromise
+  extends Promise<CharacterConnection>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  race: () => Promise<String>;
-  profession: () => Promise<String>;
-  affiliations: () => Promise<String>;
-  region: () => Promise<String>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CharacterEdge>>() => T;
+  aggregate: <T = AggregateCharacterPromise>() => T;
 }
 
-export interface CharacterPreviousValuesSubscription
-  extends Promise<AsyncIterator<CharacterPreviousValues>>,
+export interface CharacterConnectionSubscription
+  extends Promise<AsyncIterator<CharacterConnection>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  race: () => Promise<AsyncIterator<String>>;
-  profession: () => Promise<AsyncIterator<String>>;
-  affiliations: () => Promise<AsyncIterator<String>>;
-  region: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CharacterEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCharacterSubscription>() => T;
+}
+
+export interface AggregateCharacter {
+  count: Int;
+}
+
+export interface AggregateCharacterPromise
+  extends Promise<AggregateCharacter>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCharacterSubscription
+  extends Promise<AsyncIterator<AggregateCharacter>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface GameEdge {
+  node: Game;
+  cursor: String;
+}
+
+export interface GameEdgePromise extends Promise<GameEdge>, Fragmentable {
+  node: <T = GamePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface GameEdgeSubscription
+  extends Promise<AsyncIterator<GameEdge>>,
+    Fragmentable {
+  node: <T = GameSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
 }
 
 export interface GameSubscriptionPayload {
@@ -1485,42 +1522,15 @@ export interface GameSubscriptionPayloadSubscription
   previousValues: <T = GamePreviousValuesSubscription>() => T;
 }
 
-export interface GamePreviousValues {
-  id: ID_Output;
-  title: String;
-  platforms: String[];
-  genres: String[];
-  releaseDate: String;
-  publisher: String;
-  developer: String;
-  website: String;
-}
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+*/
+export type Int = number;
 
-export interface GamePreviousValuesPromise
-  extends Promise<GamePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  platforms: () => Promise<String[]>;
-  genres: () => Promise<String[]>;
-  releaseDate: () => Promise<String>;
-  publisher: () => Promise<String>;
-  developer: () => Promise<String>;
-  website: () => Promise<String>;
-}
-
-export interface GamePreviousValuesSubscription
-  extends Promise<AsyncIterator<GamePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  platforms: () => Promise<AsyncIterator<String[]>>;
-  genres: () => Promise<AsyncIterator<String[]>>;
-  releaseDate: () => Promise<AsyncIterator<String>>;
-  publisher: () => Promise<AsyncIterator<String>>;
-  developer: () => Promise<AsyncIterator<String>>;
-  website: () => Promise<AsyncIterator<String>>;
-}
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -1532,16 +1542,6 @@ export type ID_Output = string;
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
 export type String = string;
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
-*/
-export type Int = number;
-
-/*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
 
 export type Long = string;
 
