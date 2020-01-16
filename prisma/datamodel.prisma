@@ -1,3 +1,14 @@
+type Game {
+    id: ID! @id
+    title: String!
+    platforms: [String!]!
+    genres: [String!]!
+    releaseDate: String!
+    publisher: String!
+    developer: String!
+    website: String!
+}
+
 type Character {
   id: ID! @id
   name: String!
@@ -9,16 +20,6 @@ type Character {
   bookAppearences: [Book!]! @relation(link: INLINE)
 }
 
-type Game {
-    id: ID! @id
-    title: String!
-    platforms: [String!]!
-    genres: [String!]!
-    releaseDate: String!
-    publisher: String!
-    developer: String!
-    website: String!
-}
 
 type Book {
     id: ID! @id
